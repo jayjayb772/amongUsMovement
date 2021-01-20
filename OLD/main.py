@@ -1,13 +1,7 @@
 from pcapfile import savefile
-import struct
-from User import user
-from Packet import packet
+from OLD.User import user
+from OLD.Packet import packet
 import matplotlib.pyplot as plt
-import numpy
-import sys
-from pcapfile.protocols.linklayer import ethernet
-from pcapfile.protocols.network import ip
-import binascii
 
 ##long ones 627,635
 
