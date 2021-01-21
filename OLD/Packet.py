@@ -1,6 +1,6 @@
 import struct
 class packet():
-    def __init__(self, key, packet, sep):
+    def __init__(self, key, packet):
         self.key = key
         self.t = packet[0:2]
         if 14433 in struct.unpack("H", packet[0:2]):
@@ -10,6 +10,7 @@ class packet():
             self.source = "me"
         temp = packet[76:80]
         hx = str(temp)[2:6]
+        print(hx)
         self.len = int(hx, base=16)
         self.data = packet[84:]
 
@@ -43,21 +44,31 @@ class packet():
         self.xInt = int(self.x, base=16)
         self.yInt = int(self.y, base=16)
 
-
-
-        sepLine = 0
-
-        for i in range(r):
-            if sepLine == sep:
-                pretty += "| "
-                sepLine = 0
-            ind = i * 2
-            pretty += str(int(self.dataStr[ind:ind + 2],base=16))
-            pretty += " "
-            sepLine += 1
-        if l % 2 != 0:
-            pretty += self.dataStr[-1:-3]
-        else:
-            pretty = str(self.data)[2:4] + pretty
-        self.pretty = pretty
         self.whole = packet
+
+    def getUser(self):
+        return self.user
+
+    def getX(self, getint=False):
+        if getint:
+            return self.xInt
+        else:
+            return self.x
+
+    def getY(self, getint=False):
+        if getint:
+            return self.yInt
+        else:
+            return self.y
+
+    def getMouseX(self, getint=False):
+        if getint:
+            return self.mouseXInt
+        else:
+            return self.mouseX
+
+    def getMouseY(self, getint=False):
+        if getint:
+            return self.mouseYInt
+        else:
+            return self.mouseY

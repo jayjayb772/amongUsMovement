@@ -2,3 +2,4 @@ venv
 *.pcapng
 plts
 *.pcap
+OLD/__pycache__
